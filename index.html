@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Un detalle especial ✨</title>
-  <!-- Fuentes elegantes desde Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
@@ -25,7 +24,7 @@
       position: relative;
     }
 
-    /* Flores azules y destellos cayendo */
+    /* Lluvia de flores azules */
     .flower-bg {
       position: absolute;
       top: -10vh;
@@ -75,7 +74,7 @@
       background: #ffffff;
       position: relative;
       border-radius: 16px;
-      box-shadow: 0 15px 35px rgba(0, 191, 255, 0.2);
+      box-shadow: 0 15px 35px rgba(0, 191, 255, 0.25);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -90,7 +89,7 @@
 
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+      50% { transform: scale(1.18); }
     }
 
     .instruction {
@@ -103,11 +102,11 @@
 
     /* Carta desplegada */
     .card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
       width: 90%;
       max-width: 520px;
-      padding: 40px 30px;
+      padding: 35px 25px;
       border-radius: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.5);
       display: none;
@@ -159,7 +158,7 @@
       font-weight: 600;
     }
 
-    /* Reproductor discreto */
+    /* Indicador de música */
     .player-status {
       display: inline-flex;
       align-items: center;
@@ -169,7 +168,7 @@
       border-radius: 30px;
       font-size: 0.85rem;
       color: #005c97;
-      margin-top: 10px;
+      margin-top: 15px;
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
       font-weight: 500;
     }
@@ -186,7 +185,7 @@
 </head>
 <body>
 
-  <!-- Elemento de Audio Oculto -->
+  <!-- Audio Oculto -->
   <audio id="bgMusic" loop preload="auto">
     <source src="bajo.mp3" type="audio/mpeg">
     Tu navegador no soporta el formato de audio.
@@ -203,7 +202,7 @@
 
     <!-- Carta desplegada -->
     <div class="card" id="card">
-      <h1>Hola Mari ✨</h1>
+      <h1>Hola nanita ✨</h1>
       
       <p class="quote">
         "Si amarnos es un pecado, si somos culpables, los más culpables del mundo."
@@ -241,17 +240,22 @@
     const card = document.getElementById('card');
     const bgMusic = document.getElementById('bgMusic');
 
-    // Efecto de apertura y reproducción automática al tocar el sobre
+    // Abrir sobre y reproducir audio
     envelopeWrapper.addEventListener('click', () => {
       bgMusic.play().catch(error => {
-        console.log("Error al reproducir audio:", error);
+        console.log("Autoplay bloqueado:", error);
       });
 
       envelopeWrapper.style.display = 'none';
       card.classList.add('show');
+      
+      // Ráfaga inicial de flores
+      for(let i = 0; i < 15; i++) {
+        setTimeout(createFlower, i * 100);
+      }
     });
 
-    // Generador de flores azules y estrellas flotantes de fondo
+    // Generador de flores flotantes
     function createFlower() {
       const flower = document.createElement('div');
       flower.classList.add('flower-bg');
